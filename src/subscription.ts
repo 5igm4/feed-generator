@@ -23,6 +23,11 @@ export class FirehoseSubscription extends FirehoseSubscriptionBase {
       process.env.FETCH_SELECTIVE_PHRASES?.split(',') || []
     this.SUPER_ACCOUNTS = await this.loadAccounts(fetchUsers)
     this.SELECTIVE_ACCOUNTS = await this.loadAccounts(selectiveUsers)
+    console.log('Loaded following config')
+    console.log('Selective Emojis:', this.SELECTIVE_EMOJIS)
+    console.log('Selective Phrases:', this.SELECTIVE_PHRASES)
+    console.log('Selective Accounts:', this.SELECTIVE_ACCOUNTS)
+    console.log('Super Accounts:', this.SUPER_ACCOUNTS)
   }
 
   async loadAccounts(fetchUsers: string[]): Promise<string[]> {
