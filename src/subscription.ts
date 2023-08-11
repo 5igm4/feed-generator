@@ -52,6 +52,9 @@ export class FirehoseSubscription extends FirehoseSubscriptionBase {
     const postsToDelete = ops.posts.deletes.map((del) => del.uri)
     const postsToCreate = ops.posts.creates
       .filter((create) => {
+        return create.record?.reply?.parent === undefined
+      })
+      .filter((create) => {
         // only posts that meet one of our critera
         return (
           this.SUPER_ACCOUNTS.includes(create.author) ||
