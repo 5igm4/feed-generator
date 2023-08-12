@@ -38,7 +38,12 @@ export class FirehoseSubscription extends FirehoseSubscriptionBase {
           `https://bsky.social/xrpc/com.atproto.identity.resolveHandle?handle=${user}`,
         )
         const did = ((await res.json()) as any).did
-        result.push(did)
+        if (did) {
+          result.push(did)
+        } else {
+          console.log('Could not fetch DID for: ', user)
+        }
+        
       })()
     })
     await Promise.all(promises)
